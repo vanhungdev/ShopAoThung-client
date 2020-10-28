@@ -70,15 +70,15 @@
             </div>
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
-                    <h3 class="agileinfo_sign">Đăng nhập <span>Ngay</span></h3>
-                    <form>
+                    <h3 class="agileinfo_sign">Đăng nhập <span>Ngay1</span></h3>
+                    <form action="~/AuthSite/login" method="post">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="email" name="Email" required="">
-                            <label>Email</label>
+                            <input type="text" name="uname" required="">
+                            <label>User Name</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="Password" required="">
+                            <input type="password" name="psw" required="">
                             <label>Mật khẩu</label>
                             <span></span>
                         </div>
@@ -136,26 +136,36 @@
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Đăng ký <span>Ngay</span></h3>
-                    <form>
+                    <form action="~/AuthSite/register" method="post">
+
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
-                            <label>Họ tên</label>
+                        
+                            <input class="mb-0 form-control" type="text" placeholder="Tên Đăng Nhập" name="uname" required>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
-                            <label>Email</label>
-                            <span></span>
+                         
+                            <input type="text" class="mb-0 form-control" placeholder="Tên Đầy Đủ" name="fname" required>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="password" required="">
-                            <label>Mật khẩu</label>
-                            <span></span>
+                        
+                            <input class="mb-0 form-control" type="email" id="email" name="email" placeholder="Nhập Email của bạn." required>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="Confirm Password" required="">
-                            <label>Nhập lại mật khẩu</label>
-                            <span></span>
+                         
+                            <input class="mb-0 form-control" type="tel" name="phone" placeholder="Nhập SDT của bạn." required>
+                        </div>
+                        <div class="styled-input">
+                          
+                            <input class="mb-0 form-control" type="text" name="address" placeholder="Nhập Địa chỉ của bạn." required>
+                        </div>
+                        <div class="styled-input">
+                         
+                            <input class="mb-0 form-control" type="password" name="psw" id="password" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        <div class="styled-input">
+                     
+                            <input class="mb-0 form-control" type="password" id="repeat-password" name="repsw" placeholder="Nhập lại mật khẩu" required>
                         </div>
                         <input type="submit" value="Đăng ký">
                     </form>

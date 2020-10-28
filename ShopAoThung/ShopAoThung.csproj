@@ -636,6 +636,7 @@
     <Content Include="Views\Checkout\confirm_orderPaymentOnline.cshtml" />
     <Content Include="Views\Checkout\oderComplete.cshtml" />
     <Content Include="Views\Checkout\_productDetailCheckOut.cshtml" />
+    <Content Include="Views\Checkout\_subproductOrdersuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
