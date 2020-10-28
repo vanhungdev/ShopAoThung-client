@@ -1,0 +1,188 @@
+﻿@model List<ShopAoThung.Models.Cart_item>
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutSite.cshtml"; }
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="">
+    <div class="container">
+        <section class="checkout_wthree py-sm-5 py-3">
+            <div class="container">
+                <div class="check_w3ls">
+                    <div class="d-sm-flex justify-content-between mb-4">
+                        <h4>
+                            Xem SP khác
+                        </h4>
+                        <h4 class="mt-sm-0 mt-3">
+                            Giỏ hàng:
+                        </h4>
+                    </div>
+                    <div class="checkout-right">
+                        <table class="timetable_sub">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th width="15%">Hình ảnh</th>
+                                    <th width="2%">Số lượng</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Gỡ bỏ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ float sum = 0; }
+                                @foreach (var iten in Model)
+                                {
+                                    int sale = (int)iten.product.pricesale;
+                                    float price = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale);
+                                    float price1 = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale) * (iten.quantity);
+                                    float priveNsale = (int)iten.product.price * iten.quantity;
+                                    if (sale > 0)
+                                    {
+                                        sum += ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale) * ((int)iten.quantity);
+                                    }
+                                    else
+                                    {
+                                        sum += (int)iten.product.price * (int)iten.quantity;
+                                    }
+                    <tr class="rem1">
+                        <td class="invert">1</td>
+                        <td class="invert-image">
+                            <a href="#">
+                                <img style="width:50%;  " src="~/Public/images/product/@iten.product.img" alt=" " class="img-responsive">
+                            </a>
+                        </td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value">
+                                        <input type="number" name="quantity" value="@iten.quantity" />
+                                    </div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">@iten.product.name</td>
+
+                        <td class="invert">
+                            <del class="price-old">@iten.product.price.ToString("N0") VND</del>
+                            <span class="text-danger font-weight-bold">@price.ToString("N0") VND </span>
+                        </td>
+                        <td class="invert">
+                            <div class="rem">
+                                <a href="#">Xóa</a>
+                            </div>
+
+                        </td>
+                    </tr>
+}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <div class="row checkout-left mt-5">
+            <div class="col-md-4 checkout-left-basket">
+                <h4>Xem lại giỏ hàng</h4>
+                <ul>
+
+                    @foreach (var iten in Model)
+                    {
+                        int sale = (int)iten.product.pricesale;
+                        float price = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale);
+                        float price1 = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale) * (iten.quantity);
+                        float priveNsale = (int)iten.product.price * iten.quantity;
+
+            <li>
+                @iten.product.name  X @iten.quantity
+                <br />
+                <del class="price-old">@iten.product.price.ToString("N0") VND</del>
+                <span class="text-danger font-weight-bold">@price.ToString("N0") VND </span>
+            </li>
+}
+                </ul>
+                <h3 class="text-danger">Tổng tiền: @sum.ToString("N0") VND</h3>
+
+                <div class="card-title"><h3 > Chọn hình thức thanh toán</h3></div>
+                <div class="p-5">
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#COD">Thanh toán SHIP CODE</button>
+                    <div id="COD" class="collapse ">
+                        <p class="bg-light bg-danger ">Thanh toán khi nhận hàng</p>
+
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#MOMO">Thanh toán MOMO</button>
+                    <div id="MOMO" class="collapse ">
+                        <p class="bg-light bg-danger ">Thanh toán khi nhận hàng</p>
+
+                    </div>
+                </div>
+               
+                <div>
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#NL">Thanh toán NGÂN LƯỢNG</button>
+                    <div id="NL" class="collapse ">
+                        <p class="bg-light bg-danger ">Thanh toán khi nhận hàng</p>
+
+                    </div>
+                </div>
+               
+                <div>
+                    <button type="button" class="btn " data-toggle="collapse" data-target="#NH">Thanh toán NGÂN HÀNG ATM ONLINE</button>
+                    <div id="NH" class="collapse ">
+                        <p class="bg-light bg-danger ">Thanh toán khi nhận hàng</p>
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-8 address_form">
+                <h4>Địa chỉ giao hàng</h4>
+                <form action="#" class="creditly-card-form shopf-sear-headinfo_form">
+                    <div class="creditly-wrapper wrapper">
+                        <div class="information-wrapper">
+                            <div class="first-row form-group">
+                                <div class="controls">
+                                    <label class="control-label">Họ tên: </label>
+                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Họ tên">
+                                </div>
+                                <div class="card_number_grids">
+                                    <div class="card_number_grid_left">
+                                        <div class="controls">
+                                            <label class="control-label">Số điện thoại:</label>
+                                            <input class="form-control" type="text" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="card_number_grid_right">
+                                        <div class="controls">
+                                            <label class="control-label">Địa chỉ </label>
+                                            <input class="form-control" type="text" placeholder="Địa chỉ">
+                                        </div>
+                                    </div>
+                                    <div class="clear"> </div>
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Thành phố: </label>
+                                    <input class="form-control" type="text" placeholder="Thành phố">
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Loại địa chỉ: </label>
+                                    <select class="form-control option-fieldf">
+                                        <option>Văn phòng</option>
+                                        <option>Nhà</option>
+                                        <option>Doanh nghiệp</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="submit check_out">Đặt Hàng</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

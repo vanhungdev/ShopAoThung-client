@@ -1,0 +1,97 @@
+﻿@model List<ShopAoThung.Models.Cart_item>
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutSite.cshtml"; }
+
+<section class="checkout_wthree py-sm-5 py-3">
+    <div class="container">
+        <div class="check_w3ls">
+            <div class="d-sm-flex justify-content-between mb-4">
+                <h4>
+                    Xem SP khác
+                </h4>
+                <h4 class="mt-sm-0 mt-3">
+                    Giỏ hàng có:
+                    <span>3 sản phẩm</span>
+                </h4>
+            </div>
+            <div class="checkout-right">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th width="15%">Hình ảnh</th>
+                            <th width="2%">Số lượng</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Gỡ bỏ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ float sum = 0; }
+                        @foreach (var iten in Model)
+                        {
+                            int sale = (int)iten.product.pricesale;
+                            float price = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale);
+                            float price1 = ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale) * (iten.quantity);
+                            float priveNsale = (int)iten.product.price * iten.quantity;
+                            if (sale > 0)
+                            {
+                                sum += ((int)iten.product.price - (int)iten.product.price / 100 * (int)sale) * ((int)iten.quantity);
+                            }
+                            else
+                            {
+                                sum += (int)iten.product.price * (int)iten.quantity;
+                            }
+                            <tr class="rem1">
+                                <td class="invert">1</td>
+                                <td class="invert-image">
+                                    <a href="#">
+                                        <img style="width:50%;  "  src="~/Public/images/product/@iten.product.img" alt=" " class="img-responsive">
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus">&nbsp;</div>
+                                            <div class="entry value">
+                                                <input  type="number" name="quantity" value="@iten.quantity" />
+                                            </div>
+                                            <div class="entry value-plus active">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invert">@iten.product.name</td>
+
+                                <td class="invert">
+                                    <del class="price-old">@iten.product.price.ToString("N0") VND</del>
+                                    <span class="text-danger font-weight-bold">@price.ToString("N0") VND </span>
+                                </td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <a href="#">Xóa</a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6 col-12 d-flex">
+                <div class="cart-summary">
+                    <div class="cart-summary-wrap">
+                        <h4><span>Thanh toán</span></h4>
+                        <p>Tổng tiền hàng <span class="text-primary">@sum.ToString("N0") VND</span></p>
+                        <p>Tiền shipping <span class="text-primary">0 VND</span></p>
+                        <p>Tiền mã giảm giá(nếu có) <span class="text-primary">0 VND</span></p>
+                        <h2>Tổng tiền thanh toán <span class="text-primary">@sum.ToString("N0") VND</span></h2>
+                    </div>
+                    <div class="cart-summary-button">
+                        <a href="thanh-toan" class="checkout-btn c-btn btn--primary">Thanh toán</a>
+                        <button class="update-btn c-btn btn-outlined">Mua thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

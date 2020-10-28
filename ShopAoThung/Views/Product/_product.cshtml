@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ShopAoThung.Models.Product>
+
+@foreach (var item in Model)
+{
+    int sale = (int)item.pricesale;
+    float price = (int)item.price - (int)item.price / 100 * (int)sale;
+
+<div class="col-md-3 product-men">
+    <div class="men-pro-item simpleCart_shelfItem">
+        <div class="men-thumb-item">
+            <img src="~/public/images/product/@item.img" alt="" class="pro-image-front">
+            <img src="~/public/images/product/@item.img" alt="" class="pro-image-back">
+            <div class="men-cart-pro">
+                <div class="inner-men-cart-pro">
+                    <a href="single.html" class="link-product-add-cart">Xem Thêm</a>
+                </div>
+            </div>
+            <span class="product-new-top">New</span>
+
+        </div>
+        <div class="item-info-product ">
+            <h4><a href="single.html">@item.name</a></h4>
+            @if (sale > 0)
+            {
+
+            <div class="info-product-price">
+                <span class="item_price">@price.ToString("N0") Đ</span>
+                <del>@item.price.ToString("N0") Đ</del>
+            </div> }
+                else
+                {
+                    <div class="info-product-price">
+                        <span class="item_price">@item.price.ToString("N0") Đ</span>
+                        <del>@item.price.ToString("N0") Đ</del>
+                    </div>
+                }
+        <button type="button" onclick="addcartHome(@item.ID)"  class="btn btn-warning">Thêm vào giỏ </button>
+        </div>
+    </div>
+</div>}
